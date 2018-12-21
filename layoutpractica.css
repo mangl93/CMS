@@ -39,13 +39,14 @@ body {
 #tercero {
   font-family: 'Staatliches';
   color: white;
-  padding-top: 20px;
+  padding-top: 70px;
+  padding-bottom: 50px;
 }
 
 #cuarto {
   color: white;
   padding-top: 50px;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
 }
 #quinto {
 
@@ -79,8 +80,10 @@ li:hover {
 .background {
   
 
-  background-image: url("background.jpg");
+  background-image: url("background21.jpg");
   background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
 
 
