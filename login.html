@@ -24,11 +24,11 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <div class="container">
     
-    <div class="row justify-content-around" id="cabecera">
+    <div class="row  justify-content-around" id="cabecera">
       <div class="col-3">
         <div class="img-fluid" alt="Responsive image"><img src="logo3.png" ></div>
       </div>
-      <div class="col-4  " >
+      <div class="col-4  d-none" >
           <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown">Usuarios</button>
           <div class="dropdown-menu">
             <a href="#" class="dropdown-item">Perfil</a>
@@ -50,21 +50,51 @@
       </div>
 
     <div class="background">
-      <div class="row justify-content-center" id="tercero">
-        <div id="cuadro1" class="col-md-2 "><img src="reloj.png" ><b>Usuarios</b><br><br>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
-          <input type="button" value="Read more...">
+      <div class="row justify-content-around" id="tercero">
+     
+            <div class="col-3" >
+                <img src="login2.png" width="100%">
+            </div>
+            <div class="col-3 login-form-1">
+                <h3>SIGN IN</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Your Password *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Login" />
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="ForgetPwd">Forget Password?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3 login-form-2">
+                <h3>SIGN UP</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Email *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Password *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Retype Password *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="CREATE ACCOUNT" />
+                    </div>
+                    
+                </form>
+  
         </div>
-        <div id="cuadro2" class="col-md-2 "> <img src="calendario.png">
-          <b>Reservas</b><br><br>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
-          <input type="button" value="Read more..."></div>
-        <div id="cuadro3" class="col-md-2 "> <img src="diagrama.png">
-          <b>Horarios</b><br><br>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. </p>
-          <input type="button" value="Read more..."></div>
       </div>
-
     </div>
       <div class="row justify-content-around" id="quinto">
         <div class="col-md-2 "><img src="logo2.png" width="100px" height="100px"></div>
