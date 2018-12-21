@@ -1,0 +1,87 @@
+* {
+box-sizing: border-box;
+  }
+#container {
+  
+}
+body {
+  padding-top: 200px;
+
+}
+#lista li {
+  display: inline;
+}
+#prueba {
+  background-color: black;
+}
+
+#cabecera {
+
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 150px;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    position: fixed;
+    background-color: black;
+    z-index: 10;
+}
+#segundo {
+
+    color: white;
+    padding-bottom: 20px;
+    top: 200px;
+
+    
+}
+#tercero {
+  font-family: 'Staatliches';
+  color: white;
+  padding-top: 20px;
+}
+
+#cuarto {
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+#quinto {
+
+      padding-top: 50px;
+      padding-bottom: 20px;
+      text-align: center;
+}
+#lista1 li {
+  display: inline;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sexto {
+      background-color: black;
+        margin-right: 5px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      
+}
+
+li:hover {
+  background-color: grey;
+
+}
+.carousel-item {
+  width: 250px;
+  height: 350px;
+}
+
+.background {
+  
+
+  background-image: url("background.jpg");
+  background-position: center center;
+
+
+
+}
