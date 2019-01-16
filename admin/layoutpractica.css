@@ -29,14 +29,16 @@ body {
     position: fixed;
     background-color: #1c2f49;
     z-index: 10;
+    
 }
 #redes {
   padding-left: 10px;
   color: #1c2f49;
-  height: 75px;
-  width: 115px;
   background-color: #af5908;
   border-radius: 10%;
+  height: 75px;
+  width: 115px;
+  
 }
 
 #segundo {
@@ -90,7 +92,7 @@ body {
 .background {
   
 
-  background-image: url("fotos/background4.jpg");
+  background-image: url("../fotos/background4.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -132,8 +134,14 @@ body {
   border: 2px solid white;
 }
 
-.giro {
-  -webkit-transform: scaleX(-1);
-    -moz-transform: scaleX(-1);
-    transform: scaleX(-1);
+.btn1 {
+  color: #1c2f49;
+  background-color: #af5908;
+  border-radius: 10%;
+  width: 120px;
+  padding-left: 3px;
+  margin-top: 20px;
+  
+ 
+
 }

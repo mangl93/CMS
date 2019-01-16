@@ -1,0 +1,62 @@
+
+.container {
+   
+    background-image: url("fotos/prueba.jpg");
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+  .info {
+      color:orange;
+     
+  }
+  .botones {
+      position: absolute;
+     
+  }
+  .login1 {
+      width:50%;
+      float: left;
+  }
+  .login2 {
+    margin:30px;
+    width:20%;
+    float: right;
+}
+.icono {
+    width:30%;
+    float: left;
+}
+.letras {
+ 
+  width:70%;
+  float: right;
+}
+.prueba {
+    background-image: url("fotos/background21.jpg");
+}
+
+.header {
+    padding-top: 25px;
+    padding-bottom: 35px;
+}
+
+.precio {
+    margin-top: 20px;
+    padding-top: 25px;
+    background-color: grey;
+}
+
+
+.footer {
+    background-image: url("fotos/footer.jpg");
+    background-size: cover;
+    height: 100px;
+    padding-top: 25px;
+
+}
+
+.footer2 {
+    
+}
