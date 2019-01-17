@@ -63,7 +63,7 @@ if ($result = $connection->query($query)) {
 ?>
 
     <!-- PRINT THE TABLE AND THE HEADER -->
-    <table style="border:1px solid black">
+    <table style="border:1px solid white">
     <thead >
       <tr>
         <th>Pedido</th>
@@ -93,13 +93,13 @@ if ($result = $connection->query($query)) {
         echo  "<td align='center'>
         ".$obj->CodPed."
         </td>";
-          echo "<td>".$obj->CodUsu."</td>";
-          echo "<td>".$obj->CodArt."</td>";
-          echo "<td>".$obj->cantidad."</td>";
+          echo "<td align='center'>".$obj->CodUsu."</td>";
+          echo "<td align='center'>".$obj->CodArt."</td>";
+          echo "<td align='center'>".$obj->cantidad."</td>";
           echo "<td><a href='editarpedidos-admin.php?cod=$obj->CodPed'>
-          <img src='../iconos/lapiz.png' height='30px' width='30px'></a></td>";
+          <img src='../iconos/lapiz-ad.png' height='30px' width='30px'></a></td>";
           echo "<td><a href='eliminarpedidos-admin.php?cod=$obj->CodPed'>
-          <img src='../iconos/delete.png' height='30px' width='30px'></a></td>";
+          <img src='../iconos/delete-ad.png' height='30px' width='30px'></a></td>";
           
 
         echo "</tr>";

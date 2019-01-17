@@ -40,11 +40,11 @@
         <div >
         <form action="reservar.php" method="post">
           <div>
-          <span><h3>HACER RESERVA</h3></span>
+          <center><span><h3>HACER RESERVA</h3></span>
           
          
           <span>Fecha : </span><input type="date" name="fecha1" required><br>
-          <span>Hora : </span><input type="time" name="hora1" required><br>
+          <span>Hora : </span><input type="time" name="hora1" required><br></center>
           <br>
       </div>
           <div>
@@ -83,7 +83,13 @@
             <img src="iconos/futbol.png" alt="SomeAlternateText" width="100">
         </button>
         </div>
-  
+        <br>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar"
+            aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%">
+                Consultar
+            </div>
+        </div>
         
       </form>
         </div>

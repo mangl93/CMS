@@ -77,18 +77,20 @@
             }";
             echo "</style>";
             echo "<div class='disp'>";
-            echo "<h3>CONSULTAR DISPONIBILIDAD EL DIA ".$_SESSION['fecha']." </h3>";
-            echo "<h3>PISTA NUMERO ".$_SESSION['pista'].
-            "<button type='button' class='btn btn-success lista btn-lg'>DISPONIBLE</button>
-            <button type='button' class='btn btn-danger lista btn-lg'>RESERVADO</button>
-            </h3>";
-            echo "<center><h3>(HORARIO DE 10:00 A 21:00)</h3></center>";
+                echo "<h3>CONSULTAR DISPONIBILIDAD EL DIA ".$_SESSION['fecha']." </h3>";
+                echo "<h3>PISTA NUMERO ".$_SESSION['pista'].
+                "<button type='button' class='btn btn-success lista btn-lg'>DISPONIBLE</button>
+                <button type='button' class='btn btn-danger lista btn-lg'>RESERVADO</button>
+                </h3>";
+                
+                
             echo "</div>";
             $hora3=hora($_SESSION['hora'][0],$_SESSION['hora'][1]);
             $hora3=$hora3.":00";
             echo "<br>";
             echo "<fieldset>";
-            echo "<center><h1>A LAS  ".$hora3;
+            
+            echo "<center><h1>A LAS ".$hora3.": ";
             $query="
                 select CodRes from Reservas where CodPis='".$_SESSION['pista']."'
                 and fecha='".$_SESSION['fecha']."' and hora='".$hora3."';
@@ -108,14 +110,15 @@
                     
                     if ($result->num_rows==0) {
                         
-                        echo "<button type='button' class='btn btn-success lista btn-lg'>DISPONIBLE</button>";
+                        echo "Disponible<button type='button'  class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>RESERVAR</a></button>";
                     }
             echo "</h1></center>";
             echo "</fieldset>";
             echo "<br>";
             echo "<fieldset class='fieldset1'>";
+            echo "Podría reservar : ";
             echo "<center>";
-            echo "<legend>ANTES </legend>";
+            echo "<legend>ANTES : </legend>";
             while ($contador1 < 3) {
                 
                 
@@ -142,7 +145,7 @@
                     
                     if ($result->num_rows==0) {
                         
-                        echo "<button type='button' class='btn btn-success lista btn-lg'>".$hora3."</button>";
+                        echo "<button type='button' class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
                     }
                
                 $contador1=$contador1+1; 
@@ -155,7 +158,7 @@
             
             echo "<fieldset>";
             echo "<center>";
-            echo "<legend>DESPUES</legend>";
+            echo "<legend>DESPUÉS : </legend>";
 
             while ($contador < 3) {
                 $hora3=$hora3+1;
@@ -171,9 +174,9 @@
                         if (hora($hora3[0],$hora3[1])=='24') {
                             $hora3[0]=0;
                             $hora3[1]=0;
-                            echo "<button type='button' class='btn btn-success lista btn-lg'>".$hora3."</button>";
+                            echo "<button type='button' class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
                         } else {
-                            echo "<button type='button' class='btn btn-success lista btn-lg'>".$hora3."</button>";
+                            echo "<button type='button' class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
                         }
                         
                         
@@ -188,6 +191,15 @@
             }
             echo "</center>";
             echo "</fieldset>";
+            echo "<br>";
+                echo "<div class='progress '>";
+                        echo "<div class='progress-bar progress-bar-striped active' role='progressbar'
+                        aria-valuenow='70' aria-valuemin='0' aria-valuemax='100' style='width:70%'>";
+                        echo "Confirmar";
+                        echo "</div>";
+                echo "</div>";
+                echo "<br>";
+                
             ?>
             <?php 
             $result->close();

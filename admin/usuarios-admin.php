@@ -63,7 +63,7 @@ if ($result = $connection->query($query)) {
 ?>
 
     <!-- PRINT THE TABLE AND THE HEADER -->
-    <table style="border:1px solid black">
+    <table style="border:1px solid white">
     <thead >
       <tr>
         <th>CodUsuario</th>
@@ -100,9 +100,9 @@ if ($result = $connection->query($query)) {
           echo "<td>".$obj->pass."</td>";
           echo "<td>".$obj->email."</td>";
           echo "<td><a href='editarusuarios-admin.php?cod=$obj->CodUsu'>
-          <img src='../iconos/lapiz.png' height='30px' width='30px'></a></td>";
+          <img src='../iconos/lapiz-ad.png' height='30px' width='30px'></a></td>";
           echo "<td><a href='eliminarusuarios-admin.php?cod=$obj->CodUsu'>
-          <img src='../iconos/delete.png' height='30px' width='30px'></a></td>";
+          <img src='../iconos/delete-ad.png' height='30px' width='30px'></a></td>";
           
 
         echo "</tr>";

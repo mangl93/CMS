@@ -38,73 +38,94 @@
         <form action="reservar.php" method="post">
         <fieldset>
         
-            <?php
-            session_start();
-            $_SESSION['fecha']=$_POST['fecha1'];
-            $_SESSION['hora']=$_POST['hora1'];
-            $_SESSION['pista']=$_POST['img'];
-            $fecha2=$_POST['hora1'];
+        <?php
+                    session_start();
+                    
+                    $fecha2=$_GET['hora'];
 
-         
-        
+                
+                
 
 
 
-            if ($connection->connect_errno) {
-            printf("Connection failed: %s\n", $connection->connect_error);
-            exit();
+                    if ($connection->connect_errno) {
+                    printf("Connection failed: %s\n", $connection->connect_error);
+                    exit();
 
-            } 
+                    } 
 
-          
-         
-            $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
-
-
-
-            $query="
-                select CodRes from Reservas where CodPis='".$_SESSION['pista']."'
-                and fecha='".$_SESSION['fecha']."' and hora='".$_SESSION['hora']."';
-            ";
-        
-            if ($result = $connection->query($query)) {
-                while($obj = $result->fetch_object()) {
-                      $codigo=$obj->CodRes;
-                      
-                      
-                }
-              
-            }
-
-            if ($result->num_rows==0) {
-
-            if ( ($fecha2[3]=='0') && ($fecha2[4]=='0') ) {
-
-
-              $query="INSERT INTO Reservas(CodUsu,CodPis,fecha,hora) VALUES ('".$_SESSION['cod']."','".$_POST['img']."'
-          ,'".$_POST['fecha1']."','".$_POST['hora1']."');";
-              
-          if ($result = $connection->query($query)) {
-            
-              echo "<div>";
-              echo "Confirmación de la reserva : </br>";   
-              echo "El Usuario con codigo nº ".$_SESSION['cod']." ha reservado la pista con código nº ".$_POST['img'].
-              "</br> el día ".$_POST['fecha1']." a las ".$_POST['hora1'];
-              echo "</div>";
-              echo "<div>";
-              echo "<img src='iconos/success.png'>";
-              echo "</div>";
-                 
-          } else {echo "Ha habido algun error";}
-          } else {echo "Debe introducir una hora exacta";}
-
-              
-            } else {echo "Esta hora ya está reservada";}
+                
+                
+                    $connection = new mysqli("localhost", "tf", "123456", "proyecto");
+                    $connection->set_charset("uft8");
 
 
 
-            ?>
+                    $query="
+                        select CodRes from Reservas where CodPis='".$_SESSION['pista']."'
+                        and fecha='".$_SESSION['fecha']."' and hora='".$_GET['hora']."';
+                    ";
+                
+                    if ($result = $connection->query($query)) {
+                        while($obj = $result->fetch_object()) {
+                            $codigo=$obj->CodRes;
+                            
+                            
+                        }
+                    
+                    }
+
+                    if ($result->num_rows==0) {
+
+                    if ( ($fecha2[3]=='0') && ($fecha2[4]=='0') ) {
+
+
+                    $query="INSERT INTO Reservas(CodUsu,CodPis,fecha,hora) VALUES ('".$_SESSION['cod']."','".$_SESSION['pista']."'
+                    ,'".$_SESSION['fecha']."','".$_GET['hora']."');";
+                    
+                    
+                            
+                        if ($result = $connection->query($query)) {
+                            
+                            echo "<div>";
+                            echo "Confirmación de la reserva : </br>";   
+                            echo "El Usuario con codigo nº ".$_SESSION['cod']." ha reservado la pista con código nº ".$_SESSION['pista'].
+                            "</br> el día ".$_SESSION['fecha']." a las ".$_GET['hora'];
+                            echo "</div>";
+                            echo "<div>";
+                            echo "<center><img src='iconos/success.png'>";
+                            echo "</div>";
+                            echo "<br>";
+                            echo "<div class='progress '>";
+                                    echo "<div class='progress-bar progress-bar-striped active' role='progressbar'
+                                    aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width:100%'>";
+                                    echo "Confirmar";
+                                    echo "</div>";
+                            echo "</div>";
+                            echo "<br>";
+                            echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
+                                <a href='principal.php'>VOLVER A LA PÁGINA PRINCIPAL</a>
+                            </button></center>";
+                            $_SESSION['fecha']="";
+                            $_SESSION['hora']="";
+                            $_SESSION['pista']="";
+                                
+                        } else {
+                            echo "Ha habido algun error";
+                            echo $query;
+                            
+                        }
+                        } else {
+                            echo "Debe introducir una hora exacta";
+                            
+                        }
+
+                    
+                    } else {echo "Esta hora ya está reservada";}
+
+
+
+                    ?>
 
 
             <?php 

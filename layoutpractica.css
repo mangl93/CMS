@@ -90,9 +90,10 @@ body {
 .background {
   
 
-  background-image: url("fotos/background4.jpg");
+  background-image: url(fotos/bg1.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 
 
 
@@ -136,4 +137,22 @@ body {
   -webkit-transform: scaleX(-1);
     -moz-transform: scaleX(-1);
     transform: scaleX(-1);
+}
+
+
+.funciones > button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: black;
+  width: 155px;
+}
+
+.mens {
+  padding-top: 50px;
+  color: white;
+}
+
+textarea {
+  width: 250px;
+  height: 150px;
 }

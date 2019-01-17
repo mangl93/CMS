@@ -92,9 +92,10 @@ body {
 .background {
   
 
-  background-image: url("../fotos/background4.jpg");
+  background-image: url("../fotos/4admin.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 
 
 

@@ -40,11 +40,11 @@
         <div >
         <form action="disponibilidad.php" method="post">
           <div>
-          <span><h3>CONSULTAR DISPONIBILIDAD<br>(fecha/hora aprox)</h3></span>
+          <center><span><h3>CONSULTAR DISPONIBILIDAD<br>(HORARIO DE 10:00 A 21:00)</h3></span>
           
          
           <span>Fecha : </span><input type="date" name="fecha1" required><br>
-          <span>Hora : </span><input type="time" name="hora1" required><br>
+          <span>Hora : </span><input type="time" name="hora1" required><br></center>
           <br>
       </div>
           <div>
@@ -86,7 +86,15 @@
   
         
       </form>
+      <br>
+      <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar"
+            aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width:35%">
+                Consultar
+            </div>
         </div>
+        </div>
+        
     </div>
     </div>
     <?php

@@ -94,7 +94,7 @@
                 <option>no</option>
             </select>
             <br>
-            <p><input type="submit" value="Enviar"></p>
+            <center><p><input type="submit" value="Enviar"></p></center>
           </fieldset>
          
         </form>
