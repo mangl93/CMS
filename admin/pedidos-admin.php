@@ -55,7 +55,9 @@ if ($connection->connect_errno) {
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
 
-  $query="select * from Pedidos";
+  $query="select a.Nombre as nombreart,a.Marca as marcaart,u.Nombre as nombreusu,
+  u.Apellidos as apellidosusu,p.CodPed,p.cantidad from Articulos a join Pedidos p on a.CodArt=p.CodArt 
+  join Usuarios u on p.CodUsu=u.CodUsu group by p.CodPed";
 if ($result = $connection->query($query)) {
 
     
@@ -93,8 +95,8 @@ if ($result = $connection->query($query)) {
         echo  "<td align='center'>
         ".$obj->CodPed."
         </td>";
-          echo "<td align='center'>".$obj->CodUsu."</td>";
-          echo "<td align='center'>".$obj->CodArt."</td>";
+          echo "<td align='center'>".$obj->nombreusu." ".$obj->apellidosusu."</td>";
+          echo "<td align='center'>".$obj->nombreart." ".$obj->marcaart."</td>";
           echo "<td align='center'>".$obj->cantidad."</td>";
           echo "<td><a href='editarpedidos-admin.php?cod=$obj->CodPed'>
           <img src='../iconos/lapiz-ad.png' height='30px' width='30px'></a></td>";

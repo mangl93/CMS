@@ -99,10 +99,12 @@
                             echo "<div class='progress '>";
                                     echo "<div class='progress-bar progress-bar-striped active' role='progressbar'
                                     aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width:100%'>";
-                                    echo "Confirmar";
+                                    echo "Reservar";
                                     echo "</div>";
                             echo "</div>";
                             echo "<br>";
+                            echo "</center>";
+                            echo "<center>";
                             echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
                                 <a href='principal.php'>VOLVER A LA PÁGINA PRINCIPAL</a>
                             </button></center>";
@@ -116,7 +118,8 @@
                             
                         }
                         } else {
-                            echo "Debe introducir una hora exacta";
+                            echo "Debe introducir una hora exacta o <br>";
+                            echo "dentro del horario (10:00-21:00).";
                             
                         }
 

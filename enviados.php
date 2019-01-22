@@ -64,7 +64,7 @@
                                 
                             echo "</div>";
                             echo "<div class='col-9'>";
-                                echo "<button type='button' class='btn btn-primary btn-block' ><a style='color:black' href='leer.php?cod=$cod'>"
+                                echo "<button type='button' class='btn btn-primary btn-block' ><a style='color:black' href='leer1.php?cod=$cod'>"
                                 .$obj->Asunto."</a > ".$obj->hora_envio."</button>";
                                 
                             echo "</div>";

@@ -147,7 +147,7 @@
                             //PRINTING EACH ROW
                             
                               echo "<ul>";
-                              echo "<li>Codido de Reserva : ".$obj->CodRes."</li>";
+                              echo "<li>Codigo de Reserva : ".$obj->CodRes."</li>";
                               echo "<li>fecha : ".$obj->fecha."</li>";
                               echo "<li>hora : ".$obj->hora."</li>";
                               echo "<li>Codigo de Pista : ".$obj->CodPis."</li>";

@@ -62,7 +62,7 @@
         border: 2px solid white;
       }
       </style>
-          <button class="button" type="submit" name="img" value="3"  >
+          <button class="button" type="submit" name="img" value="4"  >
             <h4>TENIS</h4>  
             <img  src="iconos/tenis.png" width="100">
         </button>
@@ -70,7 +70,7 @@
             <h4>FÚTBOL</h4>  
             <img src="iconos/futbol.png" alt="SomeAlternateText" width="100">
         </button>
-        <button class="button" type="submit" name="img" value="6" >
+        <button class="button" type="submit" name="img" value="5" >
             <h4>PADEL</h4>    
             <img src="iconos/padel.png" alt="SomeAlternateText" width="97">
         </button>
@@ -78,7 +78,7 @@
             <h4>BASKET</h4>    
             <img src="iconos/baloncesto.png" alt="SomeAlternateText" width="97">
         </button>
-        <button class="button" type="submit" name="img" value="2" >
+        <button class="button" type="submit" name="img" value="3" >
             <h4>FÚTBOL SALA</h4>  
             <img src="iconos/futbol.png" alt="SomeAlternateText" width="100">
         </button>

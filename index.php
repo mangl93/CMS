@@ -33,13 +33,17 @@
     ?>
       <div class="row justify-content-around header">
         <div class="col-md-3 col-sm-12">
-        <div class="icono">
-              <img src="iconos/logo.png" width="50px">
-          </div> 
+            <div class="row">
+            <div class="col-4 icono">
+              <img src="iconos/logo.png" width="200px">
+            </div>
+            <div class="col-4 ">
             <h1>AERO SPORT</h1>
+            </div>
         </div>
-        <div class="col-md-1">
-    </div>
+        </div>
+        
+   
         <div class="col-md-1 col-sm-6 botones">
             <!-- Trigger the modal with a button -->
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">INGRESAR</button>
