@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -18,9 +18,9 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+            font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
@@ -30,7 +30,11 @@
   <div class="row justify-content-between" id="cabecera">
     
     <?php
-    include("includes/header.html");
+    session_start();
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
     ?>
     
     </div>
@@ -77,16 +81,20 @@
         <form method="post">
         
         <fieldset>
+        <div class="card">
+            <div class="card-header bg-secondary">
             <legend>ACTUALIZAR PEDIDO NÚMERO <?php echo $cp ?> : </legend>
-           
-            ¿ESTÁ SEGURO QUE QUIERE ELIMINAR EL PEDIDO? : 
+            </div>
+            <div class="card-body" style="color:black;">
+            Confirme la cancelación del pedido : 
             <input type="hidden" name="Con" value="<?php echo $cp ?>">
-            <select name="sel">
+            <select name="sel" style="font-size:18px;">
                 <option>si</option>
                 <option>no</option>
             </select>
             <br>
-            <p><input type="submit" value="Enviar"></p>
+            <p><center><input type="submit" value="Enviar"></center></p>
+            </div>
           </fieldset>
          
         </form>
@@ -113,10 +121,7 @@
 
         if ($result = $connection->query($query)) {
         
-        echo "SU PEDIDO SE HA CANCELADO";
-        echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
-            <a href='pedidos.php'>VOLVER A MIS PEDIDOS</a>
-          </button>";    
+        header("location: pedidos.php"); 
 
         }
       
@@ -133,10 +138,10 @@
 
 
     </div>
-    </div>
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
+    </div>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -18,9 +18,9 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+          font-family: 'Concert One', cursive;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
@@ -31,7 +31,10 @@
     
     <?php
     session_start();
-    include("includes/header.html");
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
     ?>
     
     </div>
@@ -42,31 +45,39 @@
     <form method="post">
 
     <div class="background">
-        <div class='row justify-content-center mens'>
-            <div class="col-md-10 ">
-                <h1 >Nuevo Mensaje</h1>
-            </div>
-        </div>
+
         <div class="row justify-content-around" id="tercero">
             
-            
-            <div class='col-2'>
-                <img src='iconos/mensaje.png' width='40px'><br>
-                Para :  <input type="text" name="dest" required><br>
+            <div class="col-11 mb-3">
+                <h1 >Nuevo Mensaje</h1>
             </div>
-            <div class='col-7 mensaje'>
+        
+
+
+            <div class='col-3'>
+                
+                Destinatario (Nickname) :<br>  <input type="text" name="dest" value="<?php 
+                if($_GET['adm']=='1') {
+                    echo "Administrador";
+                }
+                ?>" required><br>
+                <img src='iconos/mensaje.png' width='100px'>
+            </div>
+            <div class='col-6 mensaje'>
                 <div class='card text-white bg-info mb-3' style='max-width: 18rem;'>
                 <div class="card-header">
                 <p class='card-text'>
-                        Asunto :<input type="text" name="asun" required>
+                        ASUNTO<input type="text" name="asun" required>
+                
+
                     </p>
                 </div>
                 <div class='card-body'>
                     <p class='card-text'>
-                        Mensaje :<textarea type="text" name="body" required>    </textarea>
+                        MENSAJE<textarea type="text" name="body" required>    </textarea>
 
                     </p>
-                <input type="submit">
+                <center><input type="submit" value="Enviar"></center>
                 </div>
             </div>                
             </form>
@@ -87,11 +98,19 @@
           exit();
       }
 
-
-      $query="insert into Mensajes(Destinatario,Remitente,Asunto,Cuerpo) 
-      values ('$dest','$cod','$asun','$body')";
+      $query2="select CodUsu from Usuarios where Nickname='$dest';";
       
+      
+      if ($result = $connection->query($query2)) {
+        while($obj = $result->fetch_object()) {
+            $code1=$obj->CodUsu;
+            
+        }
         
+      }
+
+        $query="insert into Mensajes(Destinatario,Remitente,Asunto,Cuerpo) 
+        values ('$code1','$cod','$asun','$body');";
         if ($result = $connection->query($query)) {
             echo "<div class='background'>";
             echo "<div class='row justify-content-around' id='tercero'>";
@@ -102,38 +121,32 @@
                 echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
                 <a href='mensajes.php'>VOLVER A MIS MENSAJES</a>
                 </button>";  
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-             
+            
             
         } else {
             echo "<div class='background'>";
             echo "<div class='row justify-content-around' id='tercero'>";
             echo "<div class='col-6'>";
                 echo "ERROR";
+            echo $query;
             echo "</div>";
             echo "<div class='col-2'>";
                 echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
                 <a href='mensajes.php'>VOLVER A MIS MENSAJES</a>
                 </button>";  
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
         }
-       
+ 
+
+     
        
        ?>
 
       <?php endif ?>
             
-        </div>
 
-        
-    </div>
-
+      </div>    </div>
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
     </div>
 </body>

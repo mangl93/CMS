@@ -1,3 +1,13 @@
+<?php 
+session_start();
+
+if ($_SESSION['tipo']=='user') {
+    session_destroy();
+    echo $_SESSION['tipo'];
+    header ("Location: ../index.php");
+} 
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -7,18 +17,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <title>Hello, world!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>  
+ 
 </head>
 
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 18px;
           background-color: grey;
+          color:black;
         }
       </style>
   <!-- Optional JavaScript -->
@@ -26,14 +39,9 @@
   <div class="container">
  
   <div class="row justify-content-between" id="cabecera">
-    
     <?php
     include("header-admin.php");
-    session_start();
-    if ($_SESSION['tipo']!='root') {
-        session_destroy();
-        header ("Location: ../index.php");
-    }
+
     
     ?>
 
@@ -42,47 +50,49 @@
     <div class="background">
 
     <div class="row justify-content-around" id="tercero">
+    <div class="card col-10" style="color:black;">
+
         <?php
     $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-$connection->set_charset("uft8");
+    $connection->set_charset("uft8");
 
-//TESTING IF THE CONNECTION WAS RIGHT
-if ($connection->connect_errno) {
-    printf("Connection failed: %s\n", $connection->connect_error);
-    exit();
-}
+    //TESTING IF THE CONNECTION WAS RIGHT
+    if ($connection->connect_errno) {
+        printf("Connection failed: %s\n", $connection->connect_error);
+        exit();
+    }
 
-//MAKING A SELECT QUERY
-/* Consultas de selección que devuelven un conjunto de resultados */
+    //MAKING A SELECT QUERY
+    /* Consultas de selección que devuelven un conjunto de resultados */
 
-  $query="select a.Nombre as nombreart,a.Marca as marcaart,u.Nombre as nombreusu,
-  u.Apellidos as apellidosusu,p.CodPed,p.cantidad from Articulos a join Pedidos p on a.CodArt=p.CodArt 
-  join Usuarios u on p.CodUsu=u.CodUsu group by p.CodPed";
-if ($result = $connection->query($query)) {
+    $query="select a.Nombre as nombreart,a.Marca as marcaart,u.Nombre as nombreusu,
+    u.Apellidos as apellidosusu,p.CodPed,p.cantidad from Articulos a join Pedidos p on a.CodArt=p.CodArt 
+    join Usuarios u on p.CodUsu=u.CodUsu group by p.CodPed";
+    if ($result = $connection->query($query)) {
 
-    
-
-?>
-
-    <!-- PRINT THE TABLE AND THE HEADER -->
-    <table style="border:1px solid white">
-    <thead >
-      <tr>
-        <th>Pedido</th>
-        <th>Usuario</th>
-        <th>Articulo</th>
-        <th>Cantidad</th>
         
-        <th></th>
-        <th></th>
+
+    ?>
+
+        <!-- PRINT THE TABLE AND THE HEADER -->
+        <table style="border:1px solid white">
+        <thead >
+        <tr align='center'>
+            <th>Pedido</th>
+            <th>Usuario</th>
+            <th>Articulo</th>
+            <th>Cantidad</th>
+            
+            <th></th>
+            <th></th>
+            
+            </tr>
+
+
+        </thead>
         
-        </tr>
 
-
-    </thead>
-    
-
-<?php
+    <?php
 
     //FETCHING OBJECTS FROM THE RESULT SET
     //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
@@ -98,10 +108,10 @@ if ($result = $connection->query($query)) {
           echo "<td align='center'>".$obj->nombreusu." ".$obj->apellidosusu."</td>";
           echo "<td align='center'>".$obj->nombreart." ".$obj->marcaart."</td>";
           echo "<td align='center'>".$obj->cantidad."</td>";
-          echo "<td><a href='editarpedidos-admin.php?cod=$obj->CodPed'>
-          <img src='../iconos/lapiz-ad.png' height='30px' width='30px'></a></td>";
           echo "<td><a href='eliminarpedidos-admin.php?cod=$obj->CodPed'>
-          <img src='../iconos/delete-ad.png' height='30px' width='30px'></a></td>";
+          <i class='fa fa-trash' style='color:red;' aria-hidden='true'></i></a></td>";
+          echo "<td><a href='editarpedidos-admin.php?cod=$obj->CodPed'>
+          <i class='fa fa-pencil' style='color:blue;' aria-hidden='true'></i></a></td>";
           
 
         echo "</tr>";
@@ -116,13 +126,18 @@ if ($result = $connection->query($query)) {
 } //END OF THE IF CHECKING IF THE QUERY WAS RIGHT
 
 ?>
-      </div>
-      </div>
-    </div>
+      <div class="card-footer">
+      <a href="nuevopedido-admin.php"><div class="btn btn-info" >Nuevo Pedido</div></a>
 
-      <?php
-      include("footer-admin.html");
-      ?>
+
+
+
+          
+
+         
+        </div>
+
+ 
 
 
 

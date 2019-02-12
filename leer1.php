@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -18,9 +18,9 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+            font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
@@ -30,7 +30,13 @@
   <div class="row justify-content-between" id="cabecera">
     
     <?php
-    include("includes/header.html");
+                         session_start();
+
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
+    
     ?>
     
     </div>
@@ -42,33 +48,33 @@
 
             <div>
             <?php
-                     session_start();
                      $connection = new mysqli("localhost", "tf", "123456", "proyecto");
                      $connection->set_charset("uft8");
  
                      
                      
-                     $query="select * from Mensajes where CodMen='".$_GET['cod']."';";
+                     $query="select u.Nickname as dest ,m.hora_envio as hora,m.Asunto as asu,m.Cuerpo as cue
+                     from Mensajes m join Usuarios u on m.Destinatario=u.Codusu where CodMen='".$_GET['cod']."';";
                      
                      if ($result = $connection->query($query)) {
                      while($obj = $result->fetch_object()) {
                         
-                          echo "<div class='row justify-content-center'>";
+                          echo "<div class='row justify-content-center row1'>";
                             echo "<div class='col-4'>";
                                 echo "<img src='iconos/mensaje.png' width='40px'><br>";
-                                echo "To : ".$obj->Destinatario;
+                                echo "To : ".$obj->dest;
                                 echo "<br>";
-                                echo "Fecha : ".$obj->hora_envio;
+                                echo "Fecha : ".$obj->hora;
                             echo "</div>";
                             echo "<div class='col-8 mensaje'>";
 
 
-                                    echo "<div class='card text-white bg-info mb-3' style='max-width: 18rem;'>";
-                                        echo "<div class='card-header'>".$obj->Asunto."</div>";
-                                        echo "<div class='card-body'>";
-                                        echo "<p class='card-text'>".$obj->Cuerpo."</p>";
-                                        echo "</div>";
-                                    echo "</div>";
+                            echo "<div class='card text-white bg-info mb-3' style='max-width: 18rem;'>";
+                                echo "<div class='card-header'>".$obj->asu."</div>";
+                                echo "<div class='card-body'>";
+                                echo "<p class='card-text'>".$obj->cue."</p>";
+                                echo "</div>";
+                            echo "</div>";
 
 
                                 
@@ -104,16 +110,13 @@
                 ?>
             </div>
         </div>
-        <div class="col-md-2 funciones">
-            <button class="btn btn-light " ><a href="mensajes.php">Escribir un mensaje</a></button>
-            <button class="btn btn-light " ><a href="mensajes.php">Mensajes enviados</a></button>
-            <button class="btn btn-light " ><a href="mensajes.php">Mensajes importantes</a></button>
-            <button class="btn btn-light " ><a href="mensajes.php">Volver a mis mensajes</a></button>
-        </div>
+        <?php 
+            include("botones.mensajes.php");
+        ?>
     </div>
 
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
     </div>
 </body>

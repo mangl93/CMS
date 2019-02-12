@@ -1,5 +1,7 @@
-<!doctype html>
-<html lang="es">
+
+
+    <!doctype html>
+
 
 <head>
   <!-- Required meta tags -->
@@ -7,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -16,65 +18,88 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+            font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
   <div class="container">
     
   <div class="row justify-content-between" id="cabecera">
     
     <?php
-    include("includes/header.html");
     session_start();
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
     ?>
     
     </div>
 
-    <div class="background">
-    <div class="row justify-content-around" id="tercero">
-        <div>
-        <form action="pedir.php" method="post">
-          <span ><h3>REALIZAR PEDIDO  </h3></span>
+    <div class="background"><span ><h3>REALIZAR PEDIDO  </h3></span>
+    <div class="row justify-content-center" id="tercero">
+      
+    
           
-          <div>
+          
+         
+          <?php 
+                    
+                    $connection = new mysqli("localhost", "tf", "123456", "proyecto");
+                    $connection->set_charset("uft8");
+       
+                    if ($connection->connect_errno) {
+                        printf("Connection failed: %s\n", $connection->connect_error);
+                        exit();
+                    }
+                  
+                      $query="select * from Articulos;";
+                    if ($result = $connection->query($query)) {
+                    
+               
+                        while($obj = $result->fetch_object()) {
 
-          <iframe src="pedidos/raqueta-tenis.php" width="260px" height="400px"  style="border:0px;">
-          </iframe>
-          <iframe src="pedidos/raqueta-tenis2.php" width="260px" height="400px"  style="border:0px;">
-          </iframe>
-          <iframe src="pedidos/raqueta-tenis3.php" width="260px" height="400px"  style="border:0px;">
-          </iframe>
-          
-          </div>
-          <div>
-          
-          <iframe src="pedidos/raqueta-padel.php" width="260px" height="400px"  style="border:0px;">
-          </iframe>
-          <iframe src="pedidos/raqueta-padel2.php" width="260px" height="400px"  style="border:0px;">
-          </iframe>
-          <iframe src="pedidos/raqueta-padel3.php" width="260px" height="400px"  style="border:0px;">
-          </iframe>
-          
-          </div>
-          <div>
-          
-          <iframe src="pedidos/balon-futbol.php" width="260px" height="400px"  style="border:0px;">
-          </iframe>
-          
-          
-          </div>
-      </form>
-        </div>
+
+
+                            echo "<div class='col-3 mb-3'>";
+                            echo "<div class='card' style='color:black;'>";
+                            echo "<div class='card-header bg-primary'>";
+                            echo $obj->Nombre." ".$obj->Marca;
+                            echo "</div>";
+                            echo "<div class='card-body'>";
+                            echo "<img src=".$obj->file." height='200px'>";
+                            echo "</div>";
+                            echo "<div class='card-footer'>";
+                            echo "<a class='btn btn-info' href='detalles.php?cod=$obj->CodArt'>Detalles</a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
+
+
+
+                              
+      
+      
+                            
+                        }
+                    
+                        $result->close();
+                        unset($obj);
+                        unset($connection);
+                    
+                    } 
+                    
+                    ?>
+    
     </div>
-    </div>
+
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
+    </div>
 </body>
 
 </html>

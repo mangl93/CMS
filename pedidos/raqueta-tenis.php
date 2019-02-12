@@ -1,25 +1,4 @@
-<!doctype html>
-<html lang="en">
-<meta charset="utf-8">
 
-<head>
-
-    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="estilos.css">
-
-    <title>Hello, world!</title>
-</head>
-
-
-<body>
-    <style>
-        body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-        
-        }
-        
-      </style>
     <?php
 
 session_start();  
@@ -72,7 +51,7 @@ exit();
                 <?php echo $precio ?> €</p>
             <?php echo $id ?>
             <br>
-            <img src="fotos/1.jpg" width="135">
+            <img src="fotos/fotos/1.jpg" width="135">
         </button>
         <div>
         <style>
@@ -107,7 +86,7 @@ exit();
                         
                         
                         if ($result = $connection->query($query)) {
-                            echo "SE HA HECHO EL PEDIDO";
+                            echo "OK";
                             
                         } else {
                             echo "ERROR";

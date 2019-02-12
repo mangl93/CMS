@@ -9,31 +9,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
 </head>
 
 <body>
+    <?php 
+    session_start();
+    if (!isset($_SESSION['cod'])) {
+        session_destroy();
+        header ("Location: index.php");
+    }
+
+    ?>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+          font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          color: black;
         }
       </style>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <div class="container">
+  <div class="container-fluid">
     
-  <div class="row justify-content-between" id="cabecera">
     
     <?php
-    include("includes/header.html");
+    include("header.php");
     ?>
     
-    </div>
       
 
     <div class="background">
@@ -41,7 +46,7 @@
         
     <?php  //CREATING THE CONNECTION
 
-        session_start();
+        
              $connection = new mysqli("localhost", "tf", "123456", "proyecto");
             $connection->set_charset("uft8");
 
@@ -70,7 +75,9 @@
                 $Nombre=$obj->Nombre;
                 $Apellidos=$obj->Apellidos;
                 $Direccion=$obj->Direccion;
-                $pass=$obj->pass;
+                $nick=$obj->Nickname;
+                $mail=$obj->email;
+
                 }
             }
 
@@ -79,15 +86,22 @@
         <form method="post">
         
         <fieldset>
-            <legend>ACTUALIZAR USUARIO : </legend>
+            <div class="card">
+            <div class="card-header bg-secondary">
+            <center><h2 style="color:white;">ACTUALIZAR USUARIO</h2></center>
+            </div>
+            <div class="card-body">
             <input type="hidden" name="Cod" value="<?php echo $_SESSION['cod']?>" ><br>
-            Nombre : <input type="text" name="Nom" value="<?php echo $Nombre?>"required><br>
-            Apellidos : <input type="text" name="Ape" value="<?php echo $Apellidos?>" required><br>
-            Direccion : <input type="text" name="Dir" value="<?php echo $Direccion?>" required><br>
-            Contraseña : <input type="text" name="Con" value="<?php echo $pass?>" required><br>
+            <span>Nombre : </span><input type="text" name="Nom" value="<?php echo $Nombre?>"required><br>
+            <span>Apellidos : </span><input type="text" name="Ape" value="<?php echo $Apellidos?>" required><br>
+            <span>Nickname : </span><input type="text" name="nick" value="<?php echo $nick?>"required><br>
+            <span>Email : </span><input type="text" name="mail" value="<?php echo $mail?>"required><br>
+            <span>Direccion : </span><input type="text" name="Dir" value="<?php echo $Direccion?>" required><br>
             <br>
             <p><input type="submit" value="Enviar"></p>
           </fieldset>
+        </div>
+        
          
         </form>
 
@@ -99,7 +113,8 @@
       $nombre1=$_POST['Nom'];
       $Apellidos1=$_POST['Ape'];
       $Direccion1=$_POST['Dir'];
-      $Contraseña1=$_POST['Con'];
+      $nick=$_POST['nick'];
+      $mail=$_POST['mail'];
       
       
       $connection = new mysqli("localhost", "tf", "123456", "proyecto");
@@ -111,37 +126,47 @@
           exit();
       }
 
-
+      
       $query="UPDATE Usuarios set Nombre='$nombre1', Apellidos='$Apellidos1'
-      , Direccion='$Direccion1',pass='$Contraseña1' where CodUsu='$COD';"; 
+      , Direccion='$Direccion1',Nickname='$nick', email='$mail' where CodUsu='$COD';"; 
         
+
         if ($result = $connection->query($query)) {
-            echo "<div>";
-            echo "<h3>ACTUALIZACIÓN DE USUARIO: </h3>";
-            echo "Codigo de Usuario : ".$COD."<br>";
-            echo "Nuevo nombre de usuario : ".$nombre1."<br>";
-            echo "Nuevos apellidos del usuario : ".$Apellidos1."<br>";
-            echo "Nueva dirección del usuario : ".$Direccion1."<br><br>";
-            echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
-            <a href='principal.php'>VOLVER A MI INFORMARCION</a>
-          </button>"; 
+            echo "<div class='card mb-3' style='color:black;'>";
+            echo "<div class='card-header bg-secondary'>";
+            echo "<h3 style='color:white;'>ACTUALIZACIÓN DE USUARIO </h3>";
             echo "</div>";
+            echo "<div class='card-body' '>";
+            echo "Codigo de Usuario : ".$COD."<br>";
+            echo "Nuevo nombre : ".$nombre1."<br>";
+            echo "Nuevos apellidos : ".$Apellidos1."<br>";
+            echo "Nuevo nickname : ".$nick."<br>";
+            echo "Nuevo email : ".$mail."<br>";
+            echo "Nueva dirección : ".$Direccion1."<br><br>";
+            echo "<center><button type='button' class='btn btn-PRIMARY lista btn-lg'>
+            <a href='principal.php'>VOLVER A MI INFORMARCION</a></button></center>"; 
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+
+            
              
             
         }
        
        
        ?>
-
+       
       <?php endif ?>
 
 
 
-    </div>
-    </div>
+
+
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
+      </div>
 </body>
 
 </html>

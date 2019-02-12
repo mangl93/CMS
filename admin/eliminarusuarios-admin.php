@@ -94,7 +94,7 @@
                 <option>no</option>
             </select>
             <br>
-            <center><p><input type="submit" value="Enviar"></p></center>
+            <p><input class="btn btn-secondary mt-3" type="submit" value="Confirmar"></p>
           </fieldset>
          
         </form>
@@ -120,18 +120,16 @@
         echo $query;
         if ($result = $connection->query($query)) {
         
-        echo "USUARIO ELIMINADO";
-        echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
-            <a href='usuarios-admin.php'>VOLVER A USUARIOS</a>
-          </button>";    
-
-        }
       
-        } else {
-            echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
-            <a href='usuarios-admin.php'>VOLVER A USUARIOS</a>
-          </button>";  
-        }
+            header("location: usuarios-admin.php");
+    
+            }
+          
+            } else {
+                header("location: usuarios-admin.php");  
+            }
+           
+           ?>
        
        ?>
 
@@ -139,10 +137,7 @@
       </div>
       </div>
     
-      <?php
-      include("footer-admin.html");
-      ?>
-     
+    
 
     </body>
 

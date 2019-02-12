@@ -93,7 +93,7 @@
                 <option>no</option>
             </select>
             <br>
-            <p><input type="submit" value="Enviar"></p>
+            <p><input class="btn btn-secondary mt-3" type="submit" value="Confirmar"></p>
           </fieldset>
          
         </form>
@@ -116,13 +116,10 @@
       if ($_POST['sel']=='si') {
         
         $query="Delete from Pedidos where CodPed='".$_POST['Cod']."';";
-        echo $query;
+       
         if ($result = $connection->query($query)) {
         
-        echo "SU PEDIDO SE HA CANCELADO";
-        echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
-            <a href='pedidos-admin.php'>VOLVER A LOS PEDIDOS</a>
-          </button>";    
+        header("location: pedidos-admin.php");
 
         }
       
@@ -138,10 +135,7 @@
       </div>
       </div>
     
-      <?php
-      include("footer-admin.html");
-      ?>
-     
+    
 
     </body>
 

@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -18,9 +18,9 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+          font-family: 'Concert One', cursive;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
@@ -30,7 +30,11 @@
   <div class="row justify-content-between" id="cabecera">
     
     <?php
-    include("includes/header.html");
+    session_start();
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
     ?>
     
     </div>
@@ -74,19 +78,24 @@
 
             <form method="post">
 
-            <fieldset>
+
                 <center>
                 <legend>ELIMINAR MENSAJE  : </legend>
             
                 ¿ESTÁ SEGURO DE QUE QUIERE ELIMINAR EL MENSAJE? : 
-                
+                <style>
+                select {
+                    border:0px;
+                   
+                }   
+                </style>
                 <select name="sel">
                     <option>si</option>
                     <option>no</option>
                 </select>
                 <br><br>
                 <p><input type="submit" value="Enviar"></p></center>
-            </fieldset>
+
             
             </form>
 
@@ -131,12 +140,12 @@
             <?php endif ?>
             
         </div> 
-    </div>
+
 
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
-    </div>
+
 </body>
 
 </html>

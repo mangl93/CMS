@@ -1,171 +1,134 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
+<!-- 
+AlPhaD UI - Header
 
-    <!doctype html>
-    <html lang="en">
-
+* Version: 1.0
+* Build Date    :  15-12-2017 
+* Last Update   :  - []
+* Author: ALPhA D
+* Website: www.alphadsy.com
+* contribute on github : https://github.com/alphadsy/alpha-ui
+more ui & layout https://github.com/alphadsy
+-->
+ 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="index.css">
-  <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Hello, world!</title>
+<title>Header by AlPhaD</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<!-- font-awesome icons -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+<!-- header css -->
+<link rel="stylesheet" href="header.css">
 </head>
-
 <body>
-    
-    <style>
-        body {
-            font-family: 'Staatliches', serif;
-            font-size: 20px;
-        }
-      </style>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <div class="container">
-      <div class="row justify-content-around">
-        
-      <div class="col-md-6 info">
-          <div class="icono">
-              <img src="/iconos/logo.png" width="100px">
-          </div>    
-          <div class="letras">
-          <h3>AERO SPORT</h3>
-          <h2> Plataforma online para la gestión deportiva</h2>
-          <p>Software de deportes gratuito para ayuntamientos, clubes y gimnasios.</p>
-          </div>
-      </div>
-     
-        <div class="col-md-1 botones">
-            <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">INGRESAR</button>
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                    <div class="modal-header">  
-                        <h4 class="modal-title">INGRESO</h4>       
-                    </div>
-                    <div class="modal-body" style="color:black;">
-                        <div class="login1">
-                        <?php if (!isset($_POST["mail"])) : ?>
-                    <form method="post">
-                    
-                        
-                        
-                        <input type="email" name="mail" placeholder="email *" required><br>
-                        <input type="password" name="pass" placeholder="password *" required><br>
-                        <p><input style="margin-top:10px"type="submit" value="Send"></p>
-        
-                            </form>
 
-                            <!-- DATA IN $_POST['mail']. Coming from a form submit -->
-                            <?php else: ?>
+<!-- demo-title -->
+<div class="demo-title">
+	<h1 class="display-1">Header</h1>
+	<p>by <a href="#">@AlPhaD</a></p>
+	<p>contribute on github <a href="https://github.com/alphadsy/alpha-ui" target="_blank">alpha-ui</a></p>
+	<p>with animation <a href="https://bootsnipp.com/snippets/Warp1" target="_blank">about</a></p>
+	<p>about sections <a href="https://bootsnipp.com/snippets/X26RG" target="_blank">about</a></p>
+	<p>advance header <a href="https://bootsnipp.com/snippets/M5Nyj" target="_blank">adv header</a></p>
+</div>
 
-                            <?php
+<!-- header #1 -->
+<header class="header" id="header1">
+	<div class="center">
+		<div class="caption">
+			<h2 class="title display-3">Header title</h2>
+			<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ea accusamus enim hic, itaque eius quibusdam maxime veritatis maiores, ipsum porro beatae. Quisquam deleniti maxime velit tempora, molestias corrupti iusto!</p>
+			<button class="action btn btn-Light">click me</button>	
+		</div>	
+	</div>
+	<!-- scroll-down -->
+	<i class="scroll fa fa-angle-double-down"></i>
+</header>
 
-                    
-                            $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                            $connection->set_charset("uft8");
+<!-- header #2 -->
+<header class="header" id="header2">
+	<div class="left">
+		<div class="caption">
+			<h2 class="title display-3">Header title</h2>
+			<div class="action input-group">
+			  <input type="text" class="form-control" placeholder="Search for..." required>
+			  <span class="input-group-btn">
+			    <button class="btn btn-success" type="button">Go!</button>
+			  </span>
+	        </div>
+		</div>	
+	</div>
+	<i class="scroll fa fa-angle-double-down"></i>
+</header>
 
+<!-- header #3 -->
+<header class="header" id="header3">
+	<div class="left">
+		<div class="caption">
+			<h2 class="title display-3">Header title</h2>
+			<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ea accusamus enim hic, itaque eius quibusdam maxime veritatis maiores, ipsum porro beatae. Quisquam deleniti maxime velit tempora, molestias corrupti iusto!</p>
+			<button class="action btn btn-danger">click me</button>	
+		</div>	
+	</div>
+	
+	<div class="right">
+	  <img src="https://raw.githubusercontent.com/alphadsy/alpha-ui/master/images/laptop.png" alt="" class="img-fluid">
+	</div>
+	<i class="scroll fa fa-angle-double-down"></i>
+</header>
 
+<!-- header #4 -->
+<header class="header" id="header4">
+	<div class="center">
+		<div class="caption">
+			<h2 class="title display-3">Header title</h2>
+			<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ea accusamus enim hic, itaque eius quibusdam maxime veritatis maiores, ipsum porro beatae. Quisquam deleniti maxime velit tempora, molestias corrupti iusto!</p>
+			<form class="action">
+		    <input type="Email" class="form-control mr-1" id="email" placeholder="Email">		   
+	      <button type="submit" class="btn btn-warning">Submit</button>
+	    </form>
+		</div>	
+	</div>
+	<i class="scroll fa fa-angle-double-down"></i>
+</header>
 
-                            if ($connection->connect_errno) {
-                            printf("Connection failed: %s\n", $connection->connect_error);
-                            exit();
-                            }
+<!-- header #5 -->
+<header class="header" id="header5">
+	<!-- demo only update note -->
+	<p class="update-note">update note :change gradient , add opacity text</p>
+	
+	<div class="right">
+	  <img src="https://raw.githubusercontent.com/alphadsy/alpha-ui/master/images/laptop.png" alt="" class="img-fluid">
+	</div>
+	
+	<p class="opacity-text">Soon!</p>
+	
+	<div class="left">	
+		<div class="caption">
+			<h2 class="title display-3">Header title</h2>
+			<p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ea accusamus enim hic, itaque eius quibusdam maxime veritatis maiores, ipsum porro beatae. Quisquam deleniti maxime velit tempora, molestias corrupti iusto!</p>
+			<button class="action btn btn-light">click me</button>	
+		</div>	
+	</div>
+	<i class="scroll fa fa-angle-double-down"></i>
+</header>
 
+<div class="demo-more d-lg-flex justify-content-around">
+	<p><i class="fa fa-users"></i> contribute on github <a href="https://github.com/alphadsy/alpha-ui" target="_blank">alpha-ui</a></p>
+	<p><i class="fa fa-gift"></i> more ui and layout <a href="https://github.com/alphadsy">alphadsy</a></p>
+	<p><i class="fa fa-balance-scale"></i> under MIT</p>
+	<p><i class="fa fa-camera-retro"></i> bg-image from <a href="http://stocksnap.io/">stocksnap</a></p>
+</div>
 
-                            $query="SELECT CodUsu,pass,tipo from Usuarios where email like '%".$_POST["mail"]."'";
-
-                                
-                            if ($result = $connection->query($query)) {
-
-                                if ($result->num_rows==0) {
-                                    echo "ERROR";
-                                    
-                                } else { 
-                                    while($obj = $result->fetch_object()) {
-                                    $passwd=$obj->pass;
-                                    $id=$obj->CodUsu;
-                                    $tipo=$obj->tipo;
-                                    session_start();
-                                    $_SESSION['cod']=$id;
-                                    $_SESSION['tipo']=$tipo;
-                                    }
-                                    if ($passwd==$_POST['pass']) {
-                                        header("Location: principal.php");
-                                        
-                                        
-                                        if ($tipo=='root') {
-                                            header("Location: ./admin/principal-admin.php");
-                                        }
-                                    } else {
-                                        echo $passwd;
-                                        echo "<br>";
-                                        echo $tipo;
-                                    }
-                                    
-
-                                } }
-                                
-                                
-                            ?>
-
-                            <?php endif ?>
-
-
-                        </div>
-                        <div class="login2">
-                            <img src="../iconos/login2.png" width="100px">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                </div>
-                <div class="col-md-1 botones">
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal1">REGISTRARSE</button>
-                <!-- Modal -->
-                <div id="myModal1" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                    <div class="modal-header">   
-                        <h4 class="modal-title">REGISTRO</h4>
-                    </div>
-                    <div class="modal-body" style="color:black;">
-                    <iframe src="ingresar.php" width="480px" height="300px"  style="border:0px;"></iframe>  
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                    <button type="button"><a href="cerrarsesion.php">CERRARSESION</a>
-                    </button>
-                <div>
-
-                </div>
-            </div>
-
-                <div>
-                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-                </div>
-      
-            </div>
-        </div>
-        
-    
-    </body>
-    </html>
+</body>
+</html>

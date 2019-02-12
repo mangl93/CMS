@@ -1,5 +1,7 @@
-<!doctype html>
-<html lang="es">
+
+
+    <!doctype html>
+
 
 <head>
   <!-- Required meta tags -->
@@ -7,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -16,22 +17,25 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+            font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <div class="container">
     
- 
   <div class="row justify-content-between" id="cabecera">
     
     <?php
-    include("includes/header.html");
     session_start();
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
     ?>
+    
     
     </div>
 
@@ -40,10 +44,10 @@
         <div >
         <form action="disponibilidad.php" method="post">
           <div>
-          <center><span><h3>CONSULTAR DISPONIBILIDAD<br>(HORARIO DE 10:00 A 21:00)</h3></span>
+          <center><span><h3 class="mb-3">CONSULTAR DISPONIBILIDAD<br>(HORARIO DE 10:00 A 21:00)</h3></span>
           
          
-          <span>Fecha : </span><input type="date" name="fecha1" required><br>
+          <span>Fecha : </span><input class="mb-3" type="date" name="fecha1" required><br>
           <span>Hora : </span><input type="time" name="hora1" required><br></center>
           <br>
       </div>
@@ -62,29 +66,37 @@
         border: 2px solid white;
       }
       </style>
-          <button class="button" type="submit" name="img" value="4"  >
-            <h4>TENIS</h4>  
-            <img  src="iconos/tenis.png" width="100">
-        </button>
-        <button class="button" type="submit" name="img" value="2" >
-            <h4>FÚTBOL</h4>  
-            <img src="iconos/futbol.png" alt="SomeAlternateText" width="100">
-        </button>
-        <button class="button" type="submit" name="img" value="5" >
-            <h4>PADEL</h4>    
-            <img src="iconos/padel.png" alt="SomeAlternateText" width="97">
-        </button>
-        <button class="button" type="submit" name="img" value="6" >
-            <h4>BASKET</h4>    
-            <img src="iconos/baloncesto.png" alt="SomeAlternateText" width="97">
-        </button>
-        <button class="button" type="submit" name="img" value="3" >
-            <h4>FÚTBOL SALA</h4>  
-            <img src="iconos/futbol.png" alt="SomeAlternateText" width="100">
-        </button>
-        </div>
-  
+
+
+        <?php 
+            $connection = new mysqli("localhost", "tf", "123456", "proyecto");
+            $connection->set_charset("uft8");
+
+            //TESTING IF THE CONNECTION WAS RIGHT
+            if ($connection->connect_errno) {
+                printf("Connection failed: %s\n", $connection->connect_error);
+                exit();
+            }
+
+            $query="select * from Pistas";
+                if ($result = $connection->query($query)) {
+                    while($obj = $result->fetch_object()) {
+                        echo "<button class='button ml-3 mr-3' type='submit' name='img' value='".$obj->CodPis."'  >";
+                            echo "<h4>".$obj->tipo."</h4>";
+                            echo "<img src='$obj->file' height='100px'>";
+                        echo "</button>";
+                    
+                    }
+                }
+
+                
+            
+
         
+        ?>
+         
+  
+            </div>
       </form>
       <br>
       <div class="progress">
@@ -96,10 +108,11 @@
         </div>
         
     </div>
-    </div>
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
+        </div>
+
 </body>
 
 </html>

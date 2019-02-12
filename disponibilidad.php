@@ -1,5 +1,7 @@
-<!doctype html>
-<html lang="en">
+
+
+    <!doctype html>
+
 
 <head>
   <!-- Required meta tags -->
@@ -7,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -16,17 +17,23 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+          font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <div class="container">
+    
   <div class="row justify-content-between" id="cabecera">
-  <?php
-    include("includes/header.html");
+    
+    <?php
+    session_start();
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
     ?>
 
    
@@ -40,7 +47,7 @@
         <fieldset>
         <?php
     
-        session_start();
+ 
         $_SESSION['fecha']=$_POST['fecha1'];
         $_SESSION['hora']=$_POST['hora1'];
         $_SESSION['pista']=$_POST['img'];
@@ -77,20 +84,23 @@
             }";
             echo "</style>";
             echo "<div class='disp'>";
-                echo "<h3>CONSULTAR DISPONIBILIDAD EL DIA ".$_SESSION['fecha']." </h3>";
-                echo "<h3>PISTA NUMERO ".$_SESSION['pista'].
-                "<button type='button' class='btn btn-success lista btn-lg'>DISPONIBLE</button>
+                echo "<center><h3>CONSULTAR DISPONIBILIDAD EL DIA ".$_SESSION['fecha']." </h3>";
+                echo "<h3>PISTA NUMERO ".$_SESSION['pista'];
+                echo "<br><br>";
+                echo "<button type='button' class='btn btn-success lista btn-lg '>DISPONIBLE</button>
                 <button type='button' class='btn btn-danger lista btn-lg'>RESERVADO</button>
-                </h3>";
-                
-                
+                </h3></center>";
             echo "</div>";
+
+
             $hora3=hora($_SESSION['hora'][0],$_SESSION['hora'][1]);
             $hora3=$hora3.":00";
+
+
             echo "<br>";
             echo "<fieldset>";
             
-            echo "<center><h1>A LAS ".$hora3.": ";
+            echo "<center><h1>A LAS ".$hora3." ";
             $query="
                 select CodRes from Reservas where CodPis='".$_SESSION['pista']."'
                 and fecha='".$_SESSION['fecha']."' and hora='".$hora3."';
@@ -102,7 +112,7 @@
                     if ($result->num_rows==1) {
                        
                             
-                            echo "<button type='button' class='btn btn-danger lista btn-lg'>RESERVADO</button>";
+                            echo "<button type='button' class='btn btn-danger lista btn-lg '>RESERVADO</button>";
                          }
                         
                         
@@ -110,7 +120,7 @@
                     
                     if ($result->num_rows==0) {
                         
-                        echo "Disponible<button type='button'  class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>RESERVAR</a></button>";
+                        echo "<button type='button'  class='btn btn-success lista btn-lg '><a href='reservar.php?hora=$hora3'>RESERVAR</a></button>";
                     }
             echo "</h1></center>";
             echo "</fieldset>";
@@ -137,7 +147,7 @@
                     if ($result->num_rows==1) {
                        
                             
-                            echo "<button type='button' class='btn btn-danger lista btn-lg'>".$hora3."</button>";
+                            echo "<button type='button' class='btn btn-danger lista btn-lg ml-3 mr-3'>".$hora3."</button>";
                          }
                         
                         
@@ -145,7 +155,7 @@
                     
                     if ($result->num_rows==0) {
                         
-                        echo "<button type='button' class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
+                        echo "<button type='button' class='btn btn-success lista btn-lg ml-3 mr-3'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
                     }
                
                 $contador1=$contador1+1; 
@@ -174,9 +184,9 @@
                         if (hora($hora3[0],$hora3[1])=='24') {
                             $hora3[0]=0;
                             $hora3[1]=0;
-                            echo "<button type='button' class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
+                            echo "<button type='button' class='btn btn-success lista btn-lg ml-3 mr-3'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
                         } else {
-                            echo "<button type='button' class='btn btn-success lista btn-lg'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
+                            echo "<button type='button' class='btn btn-success lista btn-lg ml-3 mr-3'><a href='reservar.php?hora=$hora3'>".$hora3."</a></button>";
                         }
                         
                         
@@ -211,10 +221,12 @@
       </form>
         </div>
     </div>
-    </div>
+
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
+    </div>
 </body>
 
 </html>
+

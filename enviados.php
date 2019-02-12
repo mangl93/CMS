@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
@@ -18,9 +18,9 @@
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
-          background-color: grey;
+          font-family: 'Concert One', cursive;
+          font-size: 18px;
+          color: white;
         }
       </style>
   <!-- Optional JavaScript -->
@@ -30,8 +30,13 @@
   <div class="row justify-content-between" id="cabecera">
     
     <?php
-    include("includes/header.html");
+    session_start();
+        if (!isset($_SESSION['cod'])) {
+            header("Location: index.php");
+        }
+    include("header.php");
     ?>
+    
     
     </div>
       
@@ -39,7 +44,7 @@
     <div class="background">
     <div class="row justify-content-center" id="tercero">
         <div class="col-md-6">
-            <h1>Mensajes enviados</h1>
+            <h1>MENSAJES ENVIADOS</h1>
             <div>
             <?php
                      session_start();
@@ -55,7 +60,7 @@
                      while($obj = $result->fetch_object()) {
                           $cod=$obj->CodMen;
                          
-                          echo "<div class='row justify-content-center'>";
+                          echo "<div class='row justify-content-center mt-2'>";
                             echo "<div class='col-2'>";
                                 
                             $total++;
@@ -82,17 +87,13 @@
                 ?>
             </div>
         </div>
-        <div class="col-md-2 funciones">
-            <button class="btn btn-light " ><a href="mensajes.php">Escribir un mensaje</a></button>
-            <button class="btn btn-light " ><a href="mensajes.php">Mensajes enviados</a></button>
-            <button class="btn btn-light " ><a href="mensajes.php">Mensajes importantes</a></button>
-            <button class="btn btn-light " ><a href="mensajes.php">Volver a mis mensajes</a></button>
-
-        </div>
+        <?php 
+            include("botones.mensajes.php");
+        ?>
     </div>
 
     <?php
-      include("includes/footer.html");
+      include("includes/footer-admin.html");
       ?>
     </div>
 </body>
