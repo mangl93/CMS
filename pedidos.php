@@ -48,7 +48,7 @@
     <?php
 //CREATING THE CONNECTION
 $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-$connection->set_charset("uft8");
+$connection->set_charset("utf8");
 
 //TESTING IF THE CONNECTION WAS RIGHT
 if ($connection->connect_errno) {
@@ -59,7 +59,7 @@ if ($connection->connect_errno) {
 //MAKING A SELECT QUERY
 /* Consultas de selección que devuelven un conjunto de resultados */
 
-  $query="select p.CodUsu,p.CodPed,p.CodArt,p.cantidad,a.Nombre,a.Marca,a.Precio from Pedidos p 
+  $query="select p.CodUsu,p.CodPed,p.CodArt,p.cantidad,a.file,a.Nombre,a.Marca,a.Precio from Pedidos p 
   join Articulos a on p.CodArt=a.CodArt where p.CodUsu=".$_SESSION['cod'];
 if ($result = $connection->query($query)) {
 
@@ -102,7 +102,7 @@ if ($result = $connection->query($query)) {
         echo "<li>Precio total del pedido : ".$total." €</li>";
         echo "</ul>";
         echo "<br>";
-        echo "<center><img src='pedidos/fotos/$obj->CodArt.jpg' width='120px'></center>";
+        echo "<center><img src='$obj->file' width='120px'></center>";
         echo "<div class='card-footer'>";
         echo "<a href='modificarpedidos.php?cod=$id'>
           <button class='btn btn-info mt-1' style='float:left'>Editar</button></a>

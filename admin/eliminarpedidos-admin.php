@@ -49,7 +49,7 @@
 
        
              $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
 
             //TESTING IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
@@ -105,7 +105,7 @@
 
       
       $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-      $connection->set_charset("uft8");
+      $connection->set_charset("utf8");
 
       //TESTING IF THE CONNECTION WAS RIGHTNombre
       if ($connection->connect_errno) {

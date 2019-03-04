@@ -1,4 +1,10 @@
-
+<?php 
+session_start();
+if ($_SESSION['tipo']!='root') {
+    session_destroy();
+    header ("Location: ../index.php");
+}   
+?>
 
     <!doctype html>
 
@@ -33,13 +39,7 @@
   <div class="row justify-content-between" id="cabecera">
     
   <?php
-    include("header-admin.php");
-    session_start();
-    if ($_SESSION['tipo']!='root') {
-        session_destroy();
-        header ("Location: ../index.php");
-    }
-    
+    include("header-admin.php");    
     ?>
     
     </div>
@@ -49,9 +49,8 @@
         
     <?php  //CREATING THE CONNECTION
 
-        session_start();
              $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
 
             //TESTING IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
@@ -66,10 +65,6 @@
 
       <?php if (!isset($_POST["Con"])) : ?>
         <?php
-        
-            //MAKING A SELECT QUERY
-            /* Consultas de selección que devuelven un conjunto de resultados */
-         
             $query="select * from Pedidos where CodPed=".$_GET['cod'];
             if ($result = $connection->query($query)) {
                 while($obj = $result->fetch_object()) {
@@ -77,10 +72,8 @@
                 $cp=$obj->CodPed;
                 $ca=$obj->CodArt;
                 $cant=$obj->cantidad;
-                $pass=$obj->pass;
                 }
             }
-
         ?>
         
         <form method="post">
@@ -95,20 +88,15 @@
          
         </form>
 
-      <!-- DATA IN $_POST['mail']. Coming from a form submit -->
       <?php else:  ?>
       
       <?php 
-      $COD=$_SESSION['cod'];
       $cant1=$_POST['Con'];
-      $cp1=$_POST['cp'];
-      $ca1=$_POST['ca'];
       $ped=$_GET['cod'];
       
       $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-      $connection->set_charset("uft8");
+      $connection->set_charset("utf8");
 
-      //TESTING IF THE CONNECTION WAS RIGHTNombre
       if ($connection->connect_errno) {
           printf("Connection failed: %s\n", $connection->connect_error);
           exit();

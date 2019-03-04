@@ -1,11 +1,11 @@
 <?php 
 session_start();
-ob_start();
 
-if ($_SESSION['tipo']=='user') {
+if ($_SESSION['tipo']!='root') {
     session_destroy();
     header ("Location: ../index.php");
-} 
+}
+ob_start();
 
 ?>
 <!doctype html>
@@ -64,7 +64,8 @@ if ($_SESSION['tipo']=='user') {
               <div class="form-group row">
   
   
-                <label for="display_name" class="col-form-label"><h6>Usuario</h6></label>
+                <label for="display_name" class="col-form-label">
+                <h6>Usuario</h6></label>
   
                   <div class="col-lg-12 text-left">
   
@@ -73,7 +74,7 @@ if ($_SESSION['tipo']=='user') {
                           <?php
                               
                             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                            $connection->set_charset("uft8");
+                            $connection->set_charset("utf8");
 
                             //TESTING IF THE CONNECTION WAS RIGHT
                             if ($connection->connect_errno) {
@@ -108,7 +109,7 @@ if ($_SESSION['tipo']=='user') {
                           <?php
                               
                             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                            $connection->set_charset("uft8");
+                            $connection->set_charset("utf8");
 
                             //TESTING IF THE CONNECTION WAS RIGHT
                             if ($connection->connect_errno) {
@@ -171,7 +172,7 @@ if ($_SESSION['tipo']=='user') {
                     fecha = '$dia' and hora = '$hora';";
 
                     $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                    $connection->set_charset("uft8");
+                    $connection->set_charset("utf8");
 
                     if ($result = $connection->query($query)) {
 

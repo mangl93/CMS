@@ -18,7 +18,7 @@
 <body>
     <style>
         body {
-          font-family: 'Concert One', cursive;
+            font-family: 'Roboto', sans-serif;
           font-size: 18px;
           color: white;
         }
@@ -50,7 +50,7 @@
             <div>
             <?php
                      $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                     $connection->set_charset("uft8");
+                     $connection->set_charset("utf8");
  
                      
                      
@@ -96,7 +96,7 @@
                 ?>
                 <?php 
                 $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                $connection->set_charset("uft8");
+                $connection->set_charset("utf8");
 
              
              

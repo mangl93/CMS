@@ -58,7 +58,7 @@
             //MAKING A SELECT QUERY
             /* Consultas de selección que devuelven un conjunto de resultados */
             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
 
             //TESTING IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
@@ -106,7 +106,7 @@
       $ped=$_GET['cod'];
       
       $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-      $connection->set_charset("uft8");
+      $connection->set_charset("utf8");
 
       //TESTING IF THE CONNECTION WAS RIGHTNombre
       if ($connection->connect_errno) {

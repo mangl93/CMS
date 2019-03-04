@@ -72,7 +72,7 @@
         
         
             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
 
             $contador=0;
             $contador1=0;

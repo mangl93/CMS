@@ -1,4 +1,10 @@
-
+<?php 
+session_start();
+if ($_SESSION['tipo']!='root') {
+    session_destroy();
+    header ("Location: ../../index.php");
+}   
+?>
 
     <!doctype html>
     <html lang="es">

@@ -1,11 +1,9 @@
 <?php 
 session_start();
-
-if ($_SESSION['tipo']=='user') {
+if ($_SESSION['tipo']!='root') {
     session_destroy();
-    echo $_SESSION['tipo'];
     header ("Location: ../index.php");
-} 
+}
 
 ?>
 <!doctype html>
@@ -56,7 +54,7 @@ if ($_SESSION['tipo']=='user') {
   
           <div class="col-lg-12 text-left">
 
-          <?php if (!isset($_POST["tipo"])) : ?>
+          <?php if (!isset($_POST["nombre"])) : ?>
             
             <form role="form" method="post" enctype="multipart/form-data">
   
@@ -81,7 +79,7 @@ if ($_SESSION['tipo']=='user') {
 
             <div class="col-lg-12 text-left">
 
-                <input type="text" class="form-control"  name="descripcion" placeholder>
+                <input type="text" class="form-control"  name="marca" placeholder>
 
             </div>
 
@@ -139,7 +137,6 @@ if ($_SESSION['tipo']=='user') {
                       
               </div>
   
-  
               </form>
               <?php else:  ?>
 
@@ -156,13 +153,13 @@ if ($_SESSION['tipo']=='user') {
                    
                 };
                 $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                $connection->set_charset("uft8");
+                $connection->set_charset("utf8");
                 if ($connection->connect_errno) {
                     printf("Connection failed: %s\n", $connection->connect_error);
                     exit();
                 }
-                $query="insert into Articulos(tipo,Marca,Descripcion,file,Precio) 
-                values('$tipo','$marca','$descripcion','articulos/$name','$precio');";
+                $query="insert into Articulos(nombre,Marca,Descripcion,file,Precio) 
+                values('$nombre','$marca','$descripcion','articulos/$name','$precio');";
 
                 if ($result = $connection->query($query)) {
                 header("location: articulos-admin.php");

@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if ($_SESSION['tipo']!='root') {
+    session_destroy();
+    header ("Location: ../index.php");
+}   
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -29,16 +37,7 @@
   <div class="container">
  
   
-    
-    <?php
-    include("header-admin.php");
-    session_start();
-    if ($_SESSION['tipo']!='root') {
-        session_destroy();
-        header ("Location: ../index.php");
-    }
-    
-    ?>
+
 
     
          

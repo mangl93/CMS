@@ -44,9 +44,8 @@
         <div class="row justify-content-center" id="tercero">
         <?php  //CREATING THE CONNECTION
 
-            session_start();
                 $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                $connection->set_charset("uft8");
+                $connection->set_charset("utf8");
 
                 //TESTING IF THE CONNECTION WAS RIGHT
                 if ($connection->connect_errno) {
@@ -107,7 +106,7 @@
             
 
             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
 
             //TESTING IF THE CONNECTION WAS RIGHTNombre
             if ($connection->connect_errno) {
@@ -121,11 +120,11 @@
 
             if ($result = $connection->query($query)) {
 
-            echo "MENSAJE ELIMINADO";
+            echo "<h2>MENSAJE ELIMINADO</h2>";
+            echo "</br>";
             echo "<button type='button' class='btn btn-PRIMARY lista btn-lg'>
                 <a href='mensajes.php'>VOLVER A MIS MENSAJES</a>
             </button>";    
-            echo $query;
 
             }
 

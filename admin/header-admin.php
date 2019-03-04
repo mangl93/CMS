@@ -1,5 +1,8 @@
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<meta charset="utf-8">
 
 <div class="row justify-content-between" id="cabecera">
       
@@ -57,7 +60,7 @@
         </div>
         <div class="collapse navbar-collapse" id="account">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="../mensajes.php">Mensajes
+                <li class="nav-item"><a class="nav-link" href="mensajes-admin.php?mensajes">Mensajes
                 <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
                 </a></li>
                 <li class="nav-item"><a class="nav-link" href="../cerrarsesion.php">Log out</a></li>
@@ -67,3 +70,4 @@
 </nav>
 
 </div>
+

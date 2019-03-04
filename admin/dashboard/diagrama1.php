@@ -6,7 +6,7 @@
             /* The following 4 code lines contain the database connection information. Alternatively, you can move these code lines to a separate file and include the file here. You can also modify this code based on your database connection. */
             
             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
             
             //TESTING IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
@@ -47,7 +47,7 @@
 
             /*Create an object for the column chart using the FusionCharts PHP class constructor. Syntax for the constructor is ` FusionCharts("type of chart", "unique chart id", width of the chart, height of the chart, "div id to render the chart", "data format", "data source")`. Because we are using JSON data to render the chart, the data format will be `json`. The variable `$jsonEncodeData` holds all the JSON data for the chart, and will be passed as the value for the data source parameter of the constructor.*/
 
-                    $columnChart = new FusionCharts("column2D", "myFirstChart" , 400, 330, "chart-1", "json", $jsonEncodedData);
+                    $columnChart = new FusionCharts("spline", "myFirstChart" , 400, 330, "chart-1", "json", $jsonEncodedData);
 
                     // Render the chart
                     $columnChart->render();

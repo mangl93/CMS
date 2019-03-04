@@ -1,3 +1,13 @@
+<?php 
+session_start();
+include("header-admin.php");
+
+if ($_SESSION['tipo']=='user') {
+    session_destroy();
+    header ("Location: ../index.php");
+} 
+
+?>
 <!doctype html>
 
 
@@ -6,6 +16,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
+
   <!-- Bootstrap CSS -->
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -21,35 +33,15 @@
           color: black;
         }
       </style>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <div class="container">
-    
-  <div class="row justify-content-between" id="cabecera">
-    
-  <?php
-    include("header-admin.php");
-    session_start();
-    if ($_SESSION['tipo']!='root') {
-        session_destroy();
-        header ("Location: ../index.php");
-    }
-    
-    ?>
-    
-    </div>
-      
 
-    <div class="background">
-    <div class="row justify-content-around" id="tercero">
+  <div class="container-fluid">
+    <div class="row justify-content-around background" id="tercero">
         
-    <?php  //CREATING THE CONNECTION
-
-       
+    <?php  
              $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
 
-            //TESTING IF THE CONNECTION WAS RIGHT
+
             if ($connection->connect_errno) {
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
@@ -62,9 +54,6 @@
 
           <?php if (!isset($_POST["Nom"])) : ?>
             <?php
-            
-                //MAKING A SELECT QUERY
-                /* Consultas de selección que devuelven un conjunto de resultados */
             
                 $query="select * from Usuarios where CodUsu=".$_GET['cod'];
                 if ($result = $connection->query($query)) {
@@ -118,22 +107,19 @@
                 </center>
                 </form>
 
-              <!-- DATA IN $_POST['mail']. Coming from a form submit -->
               <?php else:  ?>
               
               <?php 
-              $codigo=$_POST['Cod'];
               $nombre1=$_POST['Nom'];
               $Apellidos1=$_POST['Ape'];
               $Direccion1=$_POST['Dir'];
-              $Contraseña1=$_POST['Con'];
               $nick1=$_POST['nick'];
               $mail1=$_POST['mail'];
 
               
               
               $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-              $connection->set_charset("uft8");
+              $connection->set_charset("utf8");
 
               //TESTING IF THE CONNECTION WAS RIGHTNombre
               if ($connection->connect_errno) {
@@ -151,7 +137,7 @@
                     echo "<div class='card'>";
                     echo "<div class='card-header bg-secondary '>";
 
-                    echo "<h3>ACTUALIZACIÓN DE USUARIO ".$_GET['cod']." : </h3>";
+                    echo "<h3>ACTUALIZAR USUARIO ".$_GET['cod']." : </h3>";
                     echo "</div>";
                     echo "<div class='card-body' style='color:black;'>";
 
@@ -161,7 +147,7 @@
                     echo "Nuevo nickname : ".$nick1."<br>";
                     echo "Nuevo email : ".$mail1."<br><br>";
 
-                    echo "<center><button type='button' class='btn btn-PRIMARY lista btn-lg'>
+                    echo "<center><button type='button' class='btn btn-light lista btn-lg'>
                     <a href='usuarios-admin.php'>VOLVER</a>
                   </button></center>"; 
                   echo "</div>";
@@ -179,7 +165,6 @@
               ?>
 
               <?php endif ?>
-              </div>
               </div>
             
             

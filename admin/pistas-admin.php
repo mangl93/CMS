@@ -1,13 +1,13 @@
 <?php 
 session_start();
-
-if ($_SESSION['tipo']=='user') {
+ob_start();
+if ($_SESSION['tipo']!='root') {
     session_destroy();
-    echo $_SESSION['tipo'];
     header ("Location: ../index.php");
-} 
-
+}   
 ?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -48,12 +48,11 @@ if ($_SESSION['tipo']=='user') {
     </div>
          
     <div class="background">
-    <a href="nuevapista-admin.php"><button class="btn btn-info mt-5" >Nueva pista</button></a>
 
         <div class="row justify-content-center" id="tercero">
         <?php
         $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-        $connection->set_charset("uft8");
+        $connection->set_charset("utf8");
 
         //TESTING IF THE CONNECTION WAS RIGHT
         if ($connection->connect_errno) {
@@ -65,7 +64,15 @@ if ($_SESSION['tipo']=='user') {
         /* Consultas de selección que devuelven un conjunto de resultados */
 
         $query="select * from Pistas;";
+        if (isset($_GET['delete'])) {
+            echo $_GET['delete'];
+            $query = "delete from Pistas where CodPis = ".$_GET['delete'];
+            if ($result = $connection->query($query)) {
+                header("location: pistas-admin.php");
+            }
 
+        }
+        else {
 
         if ($result = $connection->query($query)) {
 
@@ -88,13 +95,17 @@ if ($_SESSION['tipo']=='user') {
                 echo "</div>";
                 echo "<div class='card-footer'>";
                 echo "<a class='btn btn-info float-left' href='editarpistas-admin.php?cod=$obj->CodPis'>Editar</a>";
-                echo "<a class='btn btn-danger float-right' href='eliminar.php'>Eliminar</a>";
+                echo "<a class='btn btn-danger float-right' href='pistas-admin.php?delete=$obj->CodPis'>Eliminar</a>";
 
                 echo "</div>";
 
                 echo "</div>";
             }
         }
+        
+    }
+    echo "<a href='nuevapista-admin.php'><button class='btn btn-info mt-5 ml-5' >Nueva pista</button></a>
+        ";
         ?>
 
         
@@ -103,7 +114,10 @@ if ($_SESSION['tipo']=='user') {
   
     </div>
 
-  
+    <?php
+        ob_end_flush();
+    ?>
+
  
 
 

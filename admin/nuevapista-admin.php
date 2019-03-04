@@ -144,7 +144,7 @@ if ($_SESSION['tipo']=='user') {
                    
                 };
                 $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                $connection->set_charset("uft8");
+                $connection->set_charset("utf8");
                 if ($connection->connect_errno) {
                     printf("Connection failed: %s\n", $connection->connect_error);
                     exit();

@@ -1,7 +1,12 @@
-
-
-    <!doctype html>
-
+<?php 
+session_start();
+if ($_SESSION['tipo']!='root') {
+    session_destroy();
+    header ("Location: ../index.php");
+}   
+?>
+<!doctype html>
+<html lang="en">
 
 <head>
   <!-- Required meta tags -->
@@ -9,47 +14,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <title>Hello, world!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>  
+ 
 </head>
 
 <body>
     <style>
         body {
-          font-family: 'Staatliches', serif;
-          font-size: 20px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 18px;
           background-color: grey;
+          color:black;
         }
       </style>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <div class="container">
-    
+ 
   <div class="row justify-content-between" id="cabecera">
-    
-  <?php
+    <?php
     include("header-admin.php");
-    session_start();
-    if ($_SESSION['tipo']!='root') {
-        session_destroy();
-        header ("Location: ../index.php");
-    }
-    
     ?>
-    
-    </div>
-      
 
+    </div>
+         
     <div class="background">
-    <div class="row justify-content-around" id="tercero">
+
+    <div class="row justify-content-center" id="tercero">
         
-    <?php  //CREATING THE CONNECTION
+ 
+    <div class="row ">
+<?php  //CREATING THE CONNECTION
 
        
-             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection = new mysqli("localhost", "tf", "123456", "proyecto");
+            $connection->set_charset("utf8");
 
             //TESTING IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
@@ -85,17 +88,19 @@
         <form method="post">
         
         <fieldset>
-            <legend>USUARIO CÓDIGO <?php echo $CodUsu ?> : </legend>
+            <div class="card" style="color:black;">
+            <div class="card-header bg-secondary" style="color:white;"><legend>USUARIO  <?php echo $CodUsu ?></legend></div>
            
-            ¿ESTÁ SEGURO QUE QUIERE ELIMINAR EL USUARIO <?php echo $CodUsu ?>? : 
+            <p class="col-10 mt-1">SEGURO QUE QUIERE ELIMINAR EL USUARIO <?php echo $CodUsu ?>?  </p>
             <input type="hidden" name="cod" value="<?php echo $CodUsu ?>">
-            <select name="sel">
+            <select class="form-group col-6 ml-3" name="sel">
                 <option>si</option>
                 <option>no</option>
             </select>
             <br>
-            <p><input class="btn btn-secondary mt-3" type="submit" value="Confirmar"></p>
+            <center><p><input class="btn btn-secondary mt-3" type="submit" value="Confirmar"></p></center>
           </fieldset>
+          </div>
          
         </form>
 
@@ -106,7 +111,7 @@
 
       
       $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-      $connection->set_charset("uft8");
+      $connection->set_charset("utf8");
 
       //TESTING IF THE CONNECTION WAS RIGHTNombre
       if ($connection->connect_errno) {
@@ -117,28 +122,38 @@
       if ($_POST['sel']=='si') {
         
         $query="Delete from Usuarios where CodUsu='".$_POST['cod']."';";
-        echo $query;
         if ($result = $connection->query($query)) {
-        
-      
-            header("location: usuarios-admin.php");
-    
+            
+            echo "<div class='card' style='color:black;'>";
+            echo "<div class='card-header bg-secondary'>";
+            echo "Eliminar usuario";
+            echo "</div>";
+            echo "<div class='card-body'>";
+            echo "Usuario nº ".$_POST['cod']." eliminado";
+            echo "</div>";
+            echo "<div class='card-footer'>";
+            echo "<button><a href='usuarios-admin.php'>Volver</a></button>";
+            echo "</div>";
             }
           
             } else {
-                header("location: usuarios-admin.php");  
+                echo "<button><a href='usuarios-admin.php'>Volver</a></button>";
             }
            
            ?>
        
-       ?>
+     
 
       <?php endif ?>
-      </div>
-      </div>
-    
-    
+              </div>
+  
+  
+  
+ 
 
-    </body>
+
+
+
+  </body>
 
 </html>

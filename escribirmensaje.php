@@ -9,16 +9,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Hello, world!</title>
 </head>
 
 <body>
-    <style>
+<style>
         body {
-          font-family: 'Concert One', cursive;
+          font-family: 'Roboto', sans-serif;
           font-size: 18px;
           color: white;
         }
@@ -57,7 +56,7 @@
             <div class='col-3'>
                 
                 Destinatario (Nickname) :<br>  <input type="text" name="dest" value="<?php 
-                if($_GET['adm']=='1') {
+                if(isset($_GET['adm'])) {
                     echo "Administrador";
                 }
                 ?>" required><br>
@@ -90,7 +89,7 @@
       $body=$_POST['body'];
       
       $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-      $connection->set_charset("uft8");
+      $connection->set_charset("utf8");
 
       //TESTING IF THE CONNECTION WAS RIGHTNombre
       if ($connection->connect_errno) {

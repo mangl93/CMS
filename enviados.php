@@ -16,9 +16,9 @@
 </head>
 
 <body>
-    <style>
+<style>
         body {
-          font-family: 'Concert One', cursive;
+          font-family: 'Roboto', sans-serif;
           font-size: 18px;
           color: white;
         }
@@ -47,9 +47,8 @@
             <h1>MENSAJES ENVIADOS</h1>
             <div>
             <?php
-                     session_start();
                      $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                     $connection->set_charset("uft8");
+                     $connection->set_charset("utf8");
  
                      
  

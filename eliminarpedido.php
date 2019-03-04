@@ -44,9 +44,8 @@
         
     <?php  //CREATING THE CONNECTION
 
-        session_start();
              $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-            $connection->set_charset("uft8");
+            $connection->set_charset("utf8");
 
             //TESTING IF THE CONNECTION WAS RIGHT
             if ($connection->connect_errno) {
@@ -72,7 +71,6 @@
                 $cp=$obj->CodPed;
                 $ca=$obj->CodArt;
                 $cant=$obj->cantidad;
-                $pass=$obj->pass;
                 }
             }
 
@@ -107,7 +105,7 @@
       $cp=$_POST['Con'];
       
       $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-      $connection->set_charset("uft8");
+      $connection->set_charset("utf8");
 
       //TESTING IF THE CONNECTION WAS RIGHTNombre
       if ($connection->connect_errno) {

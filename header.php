@@ -33,7 +33,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="editarusuarios.php">Mis datos</a>
-                    <a class="dropdown-item" href="editarusuarios.php">Mis datos</a>
                     <a class="dropdown-item" href="pedidos.php">Mis pedidos</a>
                     </div>
                 </li>

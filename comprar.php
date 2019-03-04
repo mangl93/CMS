@@ -39,7 +39,7 @@
     
     </div>
 
-    <div class="background"><span ><h3>REALIZAR PEDIDO <?php echo $_GET ?> </h3></span>
+    <div class="background">
     <div class="row justify-content-center" id="tercero">
       
     
@@ -54,7 +54,7 @@
     <?php 
                     
                     $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                    $connection->set_charset("uft8");
+                    $connection->set_charset("utf8");
        
                     if ($connection->connect_errno) {
                         printf("Connection failed: %s\n", $connection->connect_error);
@@ -95,7 +95,7 @@
 
             
                     $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                    $connection->set_charset("uft8");
+                    $connection->set_charset("utf8");
 
 
 

@@ -49,11 +49,12 @@
             <?php
                     
                      $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                     $connection->set_charset("uft8");
+                     $connection->set_charset("utf8");
  
                      
  
-                     $query="select leido,CodMen,asunto ,date_format(hora_envio,'%d %M') as dia from Mensajes where Destinatario='".$_SESSION['cod']."';";
+                     $query="select leido,CodMen,asunto ,date_format(hora_envio,'%d %M') as dia 
+                     from Mensajes where Destinatario='".$_SESSION['cod']."';";
                      
                      if ($result = $connection->query($query)) {
                         $total=1;

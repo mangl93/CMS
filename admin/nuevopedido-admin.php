@@ -1,12 +1,15 @@
-<?php 
-session_start();
+<?php
+    include("header-admin.php");
+    session_start();
+    if ($_SESSION['tipo']!='root') {
+        session_destroy();
+        header ("Location: ../index.php");
+    }
+    
+  
 ob_start();
 
-if ($_SESSION['tipo']=='user') {
-    session_destroy();
-    echo $_SESSION['tipo'];
-    header ("Location: ../index.php");
-} 
+
 
 ?>
 <!doctype html>
@@ -65,7 +68,8 @@ if ($_SESSION['tipo']=='user') {
               <div class="form-group row">
   
   
-                <label for="display_name" class="col-form-label"><h6>Usuario</h6></label>
+                <label for="display_name" class="col-form-label">
+                <h6>Usuario</h6></label>
   
                   <div class="col-lg-12 text-left">
   
@@ -74,7 +78,7 @@ if ($_SESSION['tipo']=='user') {
                           <?php
                               
                             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                            $connection->set_charset("uft8");
+                            $connection->set_charset("utf8");
 
                             //TESTING IF THE CONNECTION WAS RIGHT
                             if ($connection->connect_errno) {
@@ -100,7 +104,7 @@ if ($_SESSION['tipo']=='user') {
               <div class="form-group row">
   
   
-                <label for="display_name" class="col-form-label"><h6>Artículo</h6></label>
+                <label for="display_name" class="col-form-label"><h6>Articulo</h6></label>
   
                   <div class="col-lg-12 text-left">
   
@@ -109,7 +113,7 @@ if ($_SESSION['tipo']=='user') {
                           <?php
                               
                             $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                            $connection->set_charset("uft8");
+                            $connection->set_charset("utf8");
 
                             //TESTING IF THE CONNECTION WAS RIGHT
                             if ($connection->connect_errno) {
@@ -158,6 +162,8 @@ if ($_SESSION['tipo']=='user') {
   
               </form>
               <?php else:  ?>
+
+
               <?php endif ?>
 
   

@@ -1,22 +1,19 @@
 <?php 
 session_start();
+ob_start();
 
-if ($_SESSION['tipo']=='user') {
+if ($_SESSION['tipo']!='root') {
     session_destroy();
-    echo $_SESSION['tipo'];
     header ("Location: ../index.php");
-} 
-
+}
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="layoutpractica.css">
-  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -34,8 +31,6 @@ if ($_SESSION['tipo']=='user') {
           color:black;
         }
       </style>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <div class="container">
  
   <div class="row justify-content-between" id="cabecera">
@@ -48,29 +43,34 @@ if ($_SESSION['tipo']=='user') {
     </div>
          
     <div class="background">
-    <a href="articulonuevo-admin.php"><button class="btn btn-info mt-5" >Nueva articulo</button></a>
 
         <div class="row justify-content-center" id="tercero">
         <?php
         $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-        $connection->set_charset("uft8");
+        $connection->set_charset("utf8");
 
-        //TESTING IF THE CONNECTION WAS RIGHT
         if ($connection->connect_errno) {
             printf("Connection failed: %s\n", $connection->connect_error);
             exit();
         }
 
-        //MAKING A SELECT QUERY
-        /* Consultas de selección que devuelven un conjunto de resultados */
 
         $query="select * from Articulos;";
 
+        if (isset($_GET['delete'])) {
+            echo $_GET['delete'];
+            $query = "delete from Articulos where CodArt = ".$_GET['delete'];
+            if ($result = $connection->query($query)) {
+                header("location: articulos-admin.php");
+            }
 
+        }
+        else {
         if ($result = $connection->query($query)) {
-
+             
+           
             while($obj = $result->fetch_object()) {
-                    
+                 
                 echo "<div class='card m-3 col-lg-3' style='color:black;'>";
                 echo "<div class='card-header'>";
                 echo "<p class='text-uppercase'>".$obj->Nombre."</p>";
@@ -88,12 +88,15 @@ if ($_SESSION['tipo']=='user') {
                 echo "</div>";
 
                 echo "<div class='card-footer'>";
-                echo "<a class='btn btn-info float-left' href='editarpistas-admin.php?cod=$obj->CodArt'>Editar</a>";
-                echo "<a class='btn btn-danger float-right' href='eliminar.php'>Eliminar</a>";
+                echo "<a class='btn btn-info float-left' href='editararticulos-admin.php?cod=$obj->CodArt'>Editar</a>";
+                echo "<a class='btn btn-danger float-right' href='articulos-admin.php?delete=$obj->CodArt'>Eliminar</a>";
                 echo "</div>";
                 echo "</div>";
             }
         }
+        echo "<a href='articulonuevo-admin.php'><button class='btn btn-info mt-5 ml-5' >
+            Nuevo articulo</button></a>";
+    }
         ?>
 
         
@@ -103,7 +106,10 @@ if ($_SESSION['tipo']=='user') {
     </div>
 
   
- 
+    <?php
+        ob_end_flush();
+    ?>
+
 
 
 

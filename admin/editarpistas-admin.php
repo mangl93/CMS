@@ -1,12 +1,9 @@
 <?php 
 session_start();
-
-if ($_SESSION['tipo']=='user') {
+if ($_SESSION['tipo']!='root') {
     session_destroy();
-    echo $_SESSION['tipo'];
     header ("Location: ../index.php");
-} 
-
+}   
 ?>
 <!doctype html>
 <html lang="en">
@@ -60,7 +57,7 @@ if ($_SESSION['tipo']=='user') {
 
           <?php
           $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                $connection->set_charset("uft8");
+                $connection->set_charset("utf8");
                 if ($connection->connect_errno) {
                     printf("Connection failed: %s\n", $connection->connect_error);
                     exit();
@@ -72,7 +69,6 @@ if ($_SESSION['tipo']=='user') {
                         $tipo = $obj->tipo;
                         $Descripcion = $obj->Descripcion;
                         $Precio = $obj->Precio;
-
 
 
                     }
@@ -102,7 +98,7 @@ if ($_SESSION['tipo']=='user') {
 
             <div class="col-lg-12 text-left">
 
-                <input type="text" class="form-control"  name="descripcion" value="<?php echo $Descripcion;?>"
+                <input type="text" class="form-control"  name="descripcion" value="<?php echo $Descripcion;?>">
 
             </div>
 
@@ -157,7 +153,7 @@ if ($_SESSION['tipo']=='user') {
 
                 
                 $connection = new mysqli("localhost", "tf", "123456", "proyecto");
-                $connection->set_charset("uft8");
+                $connection->set_charset("utf8");
                 if ($connection->connect_errno) {
                     printf("Connection failed: %s\n", $connection->connect_error);
                     exit();
