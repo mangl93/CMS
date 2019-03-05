@@ -17,7 +17,6 @@ if ($_SESSION['tipo']!='root') {
   
   <link rel="shortcut icon" href="../../iconos/logo.png" />
   <!-- Bootstrap CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
@@ -101,11 +100,11 @@ if ($_SESSION['tipo']!='root') {
                 </div>
             </div>
         </div>
-        <div class="col-4" id="chart-1"><!-- Fusion Charts will render here--></div>
-        <div class="col-3" id="chart-2"><!-- Fusion Charts will render here--></div>
+        <div class="col-4" id="chart-1"></div>
+        <div class="col-3" id="chart-2"></div>
         </div>
         <div class="row">
-            <div class="col-5" id="chart-3"><!-- Fusion Charts will render here--></div>
+            <div class="col-5" id="chart-3"></div>
            
             
             <div class="col-6 mb-2">

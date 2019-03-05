@@ -7,7 +7,8 @@
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
             }
-            $query = "select Nombre,Apellidos,count(CodPed) total from Pedidos p join Usuarios u on p.CodUsu=u.CodUsu group by u.CodUsu;";
+            $query = "select p.tipo tipo,count(CodRes) total from Reservas r join Pistas p on 
+            r.CodPis = p.CodPis GROUP BY r.CodPis;";
 
             // Execute the query, or else return the error message.
             $result = $connection->query($query) or exit("Error code ({$connection->errno}): {$connection->error}");
@@ -17,7 +18,7 @@
                 // The `$arrData` array holds the chart attributes and data
                 $arrData1 = array(
                     "chart" => array(
-                        "caption" => "PEDIDOS[2018-2019]",
+                        "caption" => "Reservas[2018-2019]",
                         "showValues" => "0",
                         "theme" => "fusion"
                         )
@@ -28,7 +29,7 @@
         // Push the data into the array
                 while($row = mysqli_fetch_array($result)) {
                     array_push($arrData1["data"], array(
-                        "label" => $row["Nombre"]." ".$row["Apellidos"],
+                        "label" => $row["tipo"],
                         "value" => $row["total"]
                         )
                     );
